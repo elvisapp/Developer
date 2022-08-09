@@ -12,19 +12,10 @@ Future<void> main() async {
   runApp(DevelopedProjects());
 }
 
-// void main() async {
-//   WidgetsFlutterBinding.ensureInitialized();
-
-//   await Firebase.initializeApp(
-//     options: DefaultFirebaseOptions.currentPlatform,
-//   );
-//   runApp(DevelopedProjects());
-// }
-
 class DevelopedProjects extends StatelessWidget {
   DevelopedProjects({Key? key}) : super(key: key);
   Color _primaryColor = HexColor('#0765e8');
-  Color _accentColor = HexColor('#050505');
+  Color _accentColor = HexColor('#fab60a');
 
   //Widget currentPage = SignUpPage();
   //AuthClass authClass = AuthClass();
@@ -39,7 +30,7 @@ class DevelopedProjects extends StatelessWidget {
       theme: ThemeData(
         primaryColor: _primaryColor,
         accentColor: _accentColor,
-        scaffoldBackgroundColor: Colors.black,
+        scaffoldBackgroundColor: Colors.blue,
         //primarySwatch: Colors.blue,
       ),
       home: const SplashScreen(title: 'Developed Projects'),

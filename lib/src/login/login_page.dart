@@ -73,9 +73,9 @@ class _LoginPageState extends State<LoginPage> {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             gradient: const LinearGradient(colors: [
-              Color(0x003d85c6),
-              Colors.green,
-              Color(0x000b5394),
+              Colors.amber,
+              Colors.blue,
+              Colors.red,
             ]),
           ),
           height: MediaQuery.of(context).size.height * 0.25,
@@ -227,9 +227,9 @@ class _LoginPageState extends State<LoginPage> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           gradient: const LinearGradient(colors: [
-            Color(0x003d85c6),
-            Color.fromARGB(255, 46, 101, 219),
-            Color(0x000b5394),
+            Colors.amber,
+            Colors.blue,
+            Colors.red,
           ]),
         ),
         height: MediaQuery.of(context).size.height * 0.20,

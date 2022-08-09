@@ -1,14 +1,11 @@
 import 'package:developed_projects/src/pages/home/home_controller.dart';
+import 'package:developed_projects/src/pages/projects/page_projects.dart';
 import 'package:developed_projects/src/utilities/colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/services.dart';
-import 'package:path/path.dart' as path;
-import 'package:image_picker/image_picker.dart';
-import 'dart:io';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, required User user})
@@ -23,6 +20,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   FirebaseStorage storage = FirebaseStorage.instance;
   HomeController _to = HomeController();
+
   //final RedesController _to = RedesController();
   late User _user;
   bool _isSigningOut = false;
@@ -46,7 +44,9 @@ class _HomePageState extends State<HomePage> {
       height: 10,
     ),
     GestureDetector(
-      onTap: (() {}),
+      onTap: (() {
+        launch("https://github.com/elvisapp", forceWebView: true);
+      }),
       child: Container(
         color: Colors.amber,
         child: Image.network('https://i.imgur.com/5JEmpD7.gif'),
@@ -64,7 +64,9 @@ class _HomePageState extends State<HomePage> {
         color: Colors.red,
         elevation: 20,
         padding: EdgeInsets.all(10),
-        onPressed: () {},
+        onPressed: () {
+          launch("https://github.com/elvisapp", forceWebView: true);
+        },
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
           side: BorderSide(color: Colors.blue),
@@ -89,7 +91,9 @@ class _HomePageState extends State<HomePage> {
         color: Colors.red,
         elevation: 20,
         padding: EdgeInsets.all(10),
-        onPressed: () {},
+        onPressed: () {
+          launch("https://github.com/elvisapp", forceWebView: true);
+        },
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
           side: BorderSide(color: Colors.blue),
@@ -112,7 +116,9 @@ class _HomePageState extends State<HomePage> {
         color: Colors.red,
         elevation: 20,
         padding: EdgeInsets.all(10),
-        onPressed: () {},
+        onPressed: () {
+          launch("https://github.com/elvisapp", forceWebView: true);
+        },
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
           side: BorderSide(color: Colors.blue),
@@ -122,24 +128,7 @@ class _HomePageState extends State<HomePage> {
     Container(
       width: 1500,
       color: Colors.amber,
-      height: 10,
-    ),
-    Container(
-      color: Colors.amber,
-      child: RaisedButton(
-        child: Text(
-          'PROJECTS',
-          style: TextStyle(color: Colors.white),
-        ),
-        color: Colors.red,
-        elevation: 20,
-        padding: EdgeInsets.all(10),
-        onPressed: () {},
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
-          side: BorderSide(color: Colors.blue),
-        ),
-      ),
+      height: 30,
     ),
   ];
 
@@ -148,6 +137,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     _to.init(context);
+
     ///////////////////////////////////
     return Scaffold(
       drawer: Drawer(
@@ -344,136 +334,9 @@ class _HomePageState extends State<HomePage> {
         slivers: [
           _appBarPrincipal(context),
           SliverList(delegate: SliverChildListDelegate(items)),
-          SliverFillRemaining(
-            child: Container(
-              height: 200,
-              decoration: const BoxDecoration(
-                  gradient: LinearGradient(colors: [
-                Colors.brown,
-                Color.fromARGB(255, 244, 244, 247),
-                Colors.brown,
-              ])),
-              child: InteractiveViewer(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      _lineaRecta(),
-                      const SizedBox(
-                        height: 10,
-                      ),
-
-                      //_appBarra(context),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          RaisedButton(
-                            color: Colors.black,
-                            elevation: 20,
-                            padding: EdgeInsets.all(10),
-                            onPressed: () {},
-                            child: _listProjects(
-                                context, 'https://i.imgur.com/oS3oWGa.png'),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                              side: BorderSide(color: Colors.blue),
-                            ),
-                          ),
-                          RaisedButton(
-                            color: Colors.black,
-                            elevation: 20,
-                            padding: EdgeInsets.all(10),
-                            onPressed: () {},
-                            child: _listProjects(
-                                context, 'https://i.imgur.com/UEdMELp.jpg'),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                              side: BorderSide(color: Colors.blue),
-                            ),
-                          ),
-
-//////////////////////////////////////////////////////////////////////////////////////////////////
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          RaisedButton(
-                            color: Colors.black,
-                            elevation: 20,
-                            padding: EdgeInsets.all(10),
-                            onPressed: () {},
-                            child: _listProjects(
-                                context, 'https://i.imgur.com/cdMYJ8X.jpg'),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                              side: BorderSide(color: Colors.blue),
-                            ),
-                          ),
-                          RaisedButton(
-                            color: Colors.black,
-                            elevation: 20,
-                            padding: EdgeInsets.all(10),
-                            onPressed: () {},
-                            child: _listProjects(
-                                context, 'https://i.imgur.com/nYdGEvq.jpg'),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                              side: BorderSide(color: Colors.blue),
-                            ),
-                          ),
-
-//////////////////////////////////////////////////////////////////////////////////////////////////
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          RaisedButton(
-                            color: Colors.black,
-                            elevation: 20,
-                            padding: EdgeInsets.all(10),
-                            onPressed: () {},
-                            child: _listProjects(
-                                context, 'https://i.imgur.com/CRPFi1w.jpg'),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                              side: BorderSide(color: Colors.blue),
-                            ),
-                          ),
-                          RaisedButton(
-                            color: Colors.black,
-                            elevation: 20,
-                            padding: EdgeInsets.all(10),
-                            onPressed: () {},
-                            child: _listProjects(
-                                context, 'https://i.imgur.com/CvIviAA.jpg'),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                              side: BorderSide(color: Colors.blue),
-                            ),
-                          ),
-
-//////////////////////////////////////////////////////////////////////////////////////////////////
-                        ],
-                      ),
-
-                      //_teste(context),
-
-                      // SizedBox(height: MediaQuery.of(context).size.height * 0.10),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
         ],
       ),
+
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           _to.whatsAppOpen();
@@ -490,8 +353,23 @@ class _HomePageState extends State<HomePage> {
       iconTheme: IconThemeData(color: Colors.amber),
       floating: true,
       pinned: true,
+      actions: [
+        IconButton(
+          color: Colors.amber,
+          icon: Icon(Icons.downloading),
+          onPressed: () {
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                    builder: (builder) => ProjectsPage(
+                          user: _user,
+                        )),
+                (route) => false);
+          },
+        ),
+      ],
 
-      title: Center(
+      title: const Center(
           child: Text(
         'Developed Projects',
         style: TextStyle(color: Colors.amber),
@@ -503,60 +381,10 @@ class _HomePageState extends State<HomePage> {
           //   'assets/images/logo_banner.png',
           // ),
           Image.network(
-        'https://i.imgur.com/oDntKPb.gif',
+        'https://i.imgur.com/sD6jKgI.gif',
         height: 300,
         fit: BoxFit.cover,
       ),
-    );
-  }
-
-  Widget _boton(String texto) {
-    return RaisedButton(
-      child: Text(
-        texto,
-        style: TextStyle(color: Colors.white),
-      ),
-      color: Colors.red,
-      elevation: 20,
-      padding: EdgeInsets.all(50),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
-        side: BorderSide(color: Colors.deepOrange),
-      ),
-      onPressed: () => {
-        // use pageroute para lanzar a otra ventana
-        print("BOTON: " + texto)
-      },
-    );
-  }
-
-  ///////
-  Widget _listProjects(BuildContext context, String image) {
-    return Column(
-      children: [
-        Image.network(image, width: 150.0),
-        const SizedBox(
-          height: 10.0,
-        ),
-        Text(
-          'FLUTTER PROJECTS',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 10,
-          ),
-        ),
-
-        //Container(title)
-      ],
-    );
-  }
-
-  /////////////////////////////
-  Widget _lineaRecta() {
-    return Container(
-      width: 1500,
-      color: Colors.amber,
-      height: 10,
     );
   }
 }
