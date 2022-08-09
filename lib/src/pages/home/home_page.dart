@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/services.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
@@ -40,7 +41,7 @@ class _HomePageState extends State<HomePage> {
   final List<Widget> items = [
     Container(
       width: 1500,
-      color: Colors.amber,
+      color: Colors.blue,
       height: 10,
     ),
     GestureDetector(
@@ -54,14 +55,14 @@ class _HomePageState extends State<HomePage> {
     ),
     Container(
       width: 1500,
-      color: Colors.amber,
+      color: Colors.blue,
       height: 10,
     ),
     Container(
       color: Color.fromARGB(255, 15, 15, 13),
       child: RaisedButton(
         child: Icon(Icons.browser_updated),
-        color: Colors.red,
+        color: Colors.green,
         elevation: 20,
         padding: EdgeInsets.all(10),
         onPressed: () {
@@ -75,20 +76,22 @@ class _HomePageState extends State<HomePage> {
     ),
     Container(
       width: 1500,
-      color: Colors.amber,
+      color: Colors.red,
       height: 10,
     ),
-    Image.network('https://i.imgur.com/ZP7OEsF.gif'),
+    Container(
+        color: Colors.blue,
+        child: Image.network('https://i.imgur.com/ZP7OEsF.gif')),
     Container(
       width: 1500,
-      color: Colors.amber,
+      color: Colors.red,
       height: 10,
     ),
     Container(
       color: Color.fromARGB(255, 15, 15, 13),
       child: RaisedButton(
         child: Icon(Icons.browser_updated),
-        color: Colors.red,
+        color: Colors.green,
         elevation: 20,
         padding: EdgeInsets.all(10),
         onPressed: () {
@@ -110,10 +113,15 @@ class _HomePageState extends State<HomePage> {
       child: Image.network('https://i.imgur.com/Irm7Ggx.gif'),
     ),
     Container(
+      width: 1500,
+      color: Colors.amber,
+      height: 10,
+    ),
+    Container(
       color: Color.fromARGB(255, 15, 15, 13),
       child: RaisedButton(
         child: Icon(Icons.browser_updated),
-        color: Colors.red,
+        color: Colors.green,
         elevation: 20,
         padding: EdgeInsets.all(10),
         onPressed: () {
@@ -144,9 +152,9 @@ class _HomePageState extends State<HomePage> {
         child: Container(
           decoration: const BoxDecoration(
               gradient: LinearGradient(colors: [
-            Color.fromARGB(255, 20, 4, 252),
-            Color.fromARGB(255, 244, 244, 247),
-            Colors.black,
+            Colors.amber,
+            Colors.blue,
+            Colors.red,
           ])),
           child: ListView(
             //shrinkWrap: true,
@@ -157,9 +165,9 @@ class _HomePageState extends State<HomePage> {
                 //margin: const EdgeInsets.all(8.0),
                 decoration: const BoxDecoration(
                     gradient: LinearGradient(colors: [
-                  Color.fromARGB(255, 20, 4, 252),
-                  Colors.black,
-                  Color.fromARGB(255, 244, 244, 247),
+                  Colors.amber,
+                  Colors.blue,
+                  Colors.red,
                 ])),
                 child: Column(
                   children: [
@@ -350,12 +358,12 @@ class _HomePageState extends State<HomePage> {
   ////////////////////////////////////////////////////////////////Widget
   Widget _appBarPrincipal(BuildContext context) {
     return SliverAppBar(
-      iconTheme: IconThemeData(color: Colors.amber),
+      iconTheme: IconThemeData(color: HexColor("#F3C54D")),
       floating: true,
       pinned: true,
       actions: [
         IconButton(
-          color: Colors.amber,
+          color: HexColor("#F3C54D"),
           icon: Icon(Icons.downloading),
           onPressed: () {
             Navigator.pushAndRemoveUntil(
@@ -369,10 +377,10 @@ class _HomePageState extends State<HomePage> {
         ),
       ],
 
-      title: const Center(
+      title: Center(
           child: Text(
         'Developed Projects',
-        style: TextStyle(color: Colors.amber),
+        style: TextStyle(color: HexColor("#F3C54D")),
       )),
       //leadingWidth: 200,
       expandedHeight: 210,

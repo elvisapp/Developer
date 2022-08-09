@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/services.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../home/home_controller.dart';
@@ -42,7 +43,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
       files.add({
         "url": fileUrl,
         "path": file.fullPath,
-        "uploaded_by": fileMeta.customMetadata?['uploaded_by'] ?? 'Home Gratis',
+        "uploaded_by": fileMeta.customMetadata?['uploaded_by'] ?? 'Home Free',
         "description":
             fileMeta.customMetadata?['description'] ?? 'Description Servi',
       });
@@ -57,9 +58,10 @@ class _ProjectsPageState extends State<ProjectsPage> {
     return Scaffold(
       backgroundColor: Colors.amber,
       appBar: AppBar(
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.deepPurple,
         //title: Center(child: const Text('elvis.com')),
         leading: IconButton(
+          color: HexColor("#F3C54D"),
           icon: Icon(Icons.home),
           onPressed: () {
             Navigator.pushAndRemoveUntil(
@@ -74,7 +76,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
 
         // Coloca el icono detrás
         actions: <Widget>[
-          CircleAvatar(
+          ClipOval(
             child: Image.network(
               _user.photoURL!,
               fit: BoxFit.fitHeight,
@@ -83,6 +85,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
           Padding(
             padding: const EdgeInsets.only(left: 120),
             child: IconButton(
+              color: HexColor("#F3C54D"),
               icon: Icon(Icons.logout),
               onPressed: () {
                 SystemNavigator.pop();
