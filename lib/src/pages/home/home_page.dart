@@ -38,108 +38,6 @@ class _HomePageState extends State<HomePage> {
 
   ///////////////////////////////store
 
-  final List<Widget> items = [
-    Container(
-      width: 1500,
-      color: Colors.blue,
-      height: 10,
-    ),
-    GestureDetector(
-      onTap: (() {
-        launch("https://github.com/elvisapp", forceWebView: true);
-      }),
-      child: Container(
-        color: Colors.amber,
-        child: Image.network('https://i.imgur.com/5JEmpD7.gif'),
-      ),
-    ),
-    Container(
-      width: 1500,
-      color: Colors.blue,
-      height: 10,
-    ),
-    Container(
-      color: Color.fromARGB(255, 15, 15, 13),
-      child: RaisedButton(
-        child: Icon(Icons.browser_updated),
-        color: Colors.green,
-        elevation: 20,
-        padding: EdgeInsets.all(10),
-        onPressed: () {
-          launch("https://github.com/elvisapp", forceWebView: true);
-        },
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
-          side: BorderSide(color: Colors.blue),
-        ),
-      ),
-    ),
-    Container(
-      width: 1500,
-      color: Colors.red,
-      height: 10,
-    ),
-    Container(
-        color: Colors.blue,
-        child: Image.network('https://i.imgur.com/ZP7OEsF.gif')),
-    Container(
-      width: 1500,
-      color: Colors.red,
-      height: 10,
-    ),
-    Container(
-      color: Color.fromARGB(255, 15, 15, 13),
-      child: RaisedButton(
-        child: Icon(Icons.browser_updated),
-        color: Colors.green,
-        elevation: 20,
-        padding: EdgeInsets.all(10),
-        onPressed: () {
-          launch("https://github.com/elvisapp", forceWebView: true);
-        },
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
-          side: BorderSide(color: Colors.blue),
-        ),
-      ),
-    ),
-    Container(
-      width: 1500,
-      color: Colors.amber,
-      height: 10,
-    ),
-    Container(
-      color: Colors.red,
-      child: Image.network('https://i.imgur.com/Irm7Ggx.gif'),
-    ),
-    Container(
-      width: 1500,
-      color: Colors.amber,
-      height: 10,
-    ),
-    Container(
-      color: Color.fromARGB(255, 15, 15, 13),
-      child: RaisedButton(
-        child: Icon(Icons.browser_updated),
-        color: Colors.green,
-        elevation: 20,
-        padding: EdgeInsets.all(10),
-        onPressed: () {
-          launch("https://github.com/elvisapp", forceWebView: true);
-        },
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
-          side: BorderSide(color: Colors.blue),
-        ),
-      ),
-    ),
-    Container(
-      width: 1500,
-      color: Colors.amber,
-      height: 30,
-    ),
-  ];
-
   ////////////////////////////////////////
 
   @override
@@ -223,12 +121,6 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-
-              Divider(
-                color: Theme.of(context).primaryColor,
-                height: 1,
-              ),
-              //////////////////////////////////////////////////////////////link
 
               Divider(
                 color: Theme.of(context).primaryColor,
@@ -356,6 +248,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   ////////////////////////////////////////////////////////////////Widget
+
   Widget _appBarPrincipal(BuildContext context) {
     return SliverAppBar(
       iconTheme: IconThemeData(color: HexColor("#F3C54D")),
@@ -395,4 +288,107 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+
+/////////////////////////////////////////////////////////////////////Lista de item
+  final List<Widget> items = [
+    Container(
+      width: 1500,
+      color: Colors.blue,
+      height: 10,
+    ),
+    GestureDetector(
+      onTap: (() {
+        launch("https://github.com/elvisapp/Perfil", forceWebView: true);
+      }),
+      child: Container(
+        color: Colors.amber,
+        child: Image.network('https://i.imgur.com/5JEmpD7.gif'),
+      ),
+    ),
+    Container(
+      width: 1500,
+      color: Colors.blue,
+      height: 10,
+    ),
+    Container(
+      color: Color.fromARGB(255, 15, 15, 13),
+      child: RaisedButton(
+        child: Icon(Icons.browser_updated),
+        color: Colors.green,
+        elevation: 20,
+        padding: EdgeInsets.all(10),
+        onPressed: () {
+          launch("https://github.com/elvisapp/Perfil", forceWebView: true);
+        },
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+          side: BorderSide(color: Colors.blue),
+        ),
+      ),
+    ),
+    Container(
+      width: 1500,
+      color: Colors.red,
+      height: 10,
+    ),
+    Container(
+        color: Colors.blue,
+        child: Image.network('https://i.imgur.com/ZP7OEsF.gif')),
+    Container(
+      width: 1500,
+      color: Colors.red,
+      height: 10,
+    ),
+    Container(
+      color: Color.fromARGB(255, 15, 15, 13),
+      child: RaisedButton(
+        child: Icon(Icons.browser_updated),
+        color: Colors.green,
+        elevation: 20,
+        padding: EdgeInsets.all(10),
+        onPressed: () {
+          launch("https://github.com/elvisapp/Perfil", forceWebView: true);
+        },
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+          side: BorderSide(color: Colors.blue),
+        ),
+      ),
+    ),
+    Container(
+      width: 1500,
+      color: Colors.amber,
+      height: 10,
+    ),
+    Container(
+      color: Colors.red,
+      child: Image.network('https://i.imgur.com/Irm7Ggx.gif'),
+    ),
+    Container(
+      width: 1500,
+      color: Colors.amber,
+      height: 10,
+    ),
+    Container(
+      color: Color.fromARGB(255, 15, 15, 13),
+      child: RaisedButton(
+        child: Icon(Icons.browser_updated),
+        color: Colors.green,
+        elevation: 20,
+        padding: EdgeInsets.all(10),
+        onPressed: () {
+          launch("https://github.com/elvisapp/Perfil", forceWebView: true);
+        },
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+          side: BorderSide(color: Colors.blue),
+        ),
+      ),
+    ),
+    Container(
+      width: 1500,
+      color: Colors.amber,
+      height: 30,
+    ),
+  ];
 }

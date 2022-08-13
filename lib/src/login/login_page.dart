@@ -122,18 +122,11 @@ class _LoginPageState extends State<LoginPage> {
         GestureDetector(
           child: FaIcon(
             FontAwesomeIcons.google,
-            size: 35,
+            size: 45,
             color: HexColor("#EC2D2F"),
           ),
           onTap: () async {
             setState(() {
-              // showDialog(
-              //   context: context,
-              //   builder: (BuildContext context) {
-              //     return ThemeHelper().alartDialog(
-              //         "GitHub", "Usuario entrando con cuenta Gmail.", context);
-              //   },
-              // );
               _isSigningIn = true;
             });
             User? user =
@@ -152,69 +145,58 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               );
             }
-
-            // _to.signInWithGoogle();
-            // setState(() {
-            //   showDialog(
-            //     context: context,
-            //     builder: (BuildContext context) {
-            //       return ThemeHelper().alartDialog(
-            //           "Google", "Usuario entrando con cuenta Gimail.", context);
-            //     },
-            //   );
-            // });
           },
         ),
-        SizedBox(
-          width: 30.0,
-        ),
-        GestureDetector(
-          child: Container(
-            padding: EdgeInsets.all(0),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(100),
-              border: Border.all(width: 5, color: HexColor("#0d0c0c")),
-              color: HexColor("#0d0c0c"),
-            ),
-            child: FaIcon(
-              FontAwesomeIcons.github,
-              size: 23,
-              color: HexColor("#FFFFFF"),
-            ),
-          ),
-          onTap: () {
-            // setState(() {
-            //   showDialog(
-            //     context: context,
-            //     builder: (BuildContext context) {
-            //       return ThemeHelper().alartDialog(
-            //           "GitHub", "Usuario entrando con GitHub.", context);
-            //     },
-            //   );
-            // });
-          },
-        ),
-        SizedBox(
-          width: 30.0,
-        ),
-        GestureDetector(
-          child: FaIcon(
-            FontAwesomeIcons.facebook,
-            size: 35,
-            color: HexColor("#3E529C"),
-          ),
-          onTap: () {
-            // setState(() {
-            //   showDialog(
-            //     context: context,
-            //     builder: (BuildContext context) {
-            //       return ThemeHelper().alartDialog(
-            //           "Facebook", "Usuario entrando con Facebook.", context);
-            //     },
-            //   );
-            // });
-          },
-        ),
+        // SizedBox(
+        //   width: 30.0,
+        // ),
+        // GestureDetector(
+        //   child: Container(
+        //     padding: EdgeInsets.all(0),
+        //     decoration: BoxDecoration(
+        //       borderRadius: BorderRadius.circular(100),
+        //       border: Border.all(width: 5, color: HexColor("#0d0c0c")),
+        //       color: HexColor("#0d0c0c"),
+        //     ),
+        //     child: FaIcon(
+        //       FontAwesomeIcons.github,
+        //       size: 23,
+        //       color: HexColor("#FFFFFF"),
+        //     ),
+        //   ),
+        //   onTap: () {
+        //     // setState(() {
+        //     //   showDialog(
+        //     //     context: context,
+        //     //     builder: (BuildContext context) {
+        //     //       return ThemeHelper().alartDialog(
+        //     //           "GitHub", "Usuario entrando con GitHub.", context);
+        //     //     },
+        //     //   );
+        //     // });
+        //   },
+        // ),
+        // SizedBox(
+        //   width: 30.0,
+        // ),
+        // GestureDetector(
+        //   child: FaIcon(
+        //     FontAwesomeIcons.facebook,
+        //     size: 35,
+        //     color: HexColor("#3E529C"),
+        //   ),
+        //   onTap: () {
+        //     // setState(() {
+        //     //   showDialog(
+        //     //     context: context,
+        //     //     builder: (BuildContext context) {
+        //     //       return ThemeHelper().alartDialog(
+        //     //           "Facebook", "Usuario entrando con Facebook.", context);
+        //     //     },
+        //     //   );
+        //     // });
+        //   },
+        // ),
       ],
     );
   }
@@ -232,7 +214,7 @@ class _LoginPageState extends State<LoginPage> {
             Colors.red,
           ]),
         ),
-        height: MediaQuery.of(context).size.height * 0.20,
+        height: MediaQuery.of(context).size.height * 0.19,
         //height: _headerHeight,
         //let's create a common header widget
       ),

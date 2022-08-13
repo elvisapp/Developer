@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
+import '../pages/home/home_page.dart';
+
 class Authentication {
   static SnackBar customSnackBar({required String content}) {
     return SnackBar(
@@ -23,13 +25,13 @@ class Authentication {
     User? user = FirebaseAuth.instance.currentUser;
 
     if (user != null) {
-      // Navigator.of(context).pushReplacement(
-      //   MaterialPageRoute(
-      //     builder: (context) => ProfilePage(
-      //       user: user,
-      //     ),
-      //   ),
-      // );
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => HomePage(
+            user: user,
+          ),
+        ),
+      );
     }
 
     return firebaseApp;

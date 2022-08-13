@@ -1,4 +1,5 @@
 import 'package:developed_projects/src/pages/home/home_page.dart';
+import 'package:developed_projects/src/pages/projects/uploadProjects.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
@@ -29,27 +30,6 @@ class _ProjectsPageState extends State<ProjectsPage> {
     _user = widget._user;
 
     super.initState();
-  }
-
-  Future<List<Map<String, dynamic>>> _loadImages() async {
-    List<Map<String, dynamic>> files = [];
-
-    final ListResult result = await storage.ref().list();
-    final List<Reference> allFiles = result.items;
-
-    await Future.forEach<Reference>(allFiles, (file) async {
-      final String fileUrl = await file.getDownloadURL();
-      final FullMetadata fileMeta = await file.getMetadata();
-      files.add({
-        "url": fileUrl,
-        "path": file.fullPath,
-        "uploaded_by": fileMeta.customMetadata?['uploaded_by'] ?? 'Home Free',
-        "description":
-            fileMeta.customMetadata?['description'] ?? 'Description Servi',
-      });
-    });
-
-    return files;
   }
 
   @override
@@ -83,14 +63,28 @@ class _ProjectsPageState extends State<ProjectsPage> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 120),
+            padding: const EdgeInsets.only(left: 50),
             child: IconButton(
               color: HexColor("#F3C54D"),
-              icon: Icon(Icons.logout),
+              icon: Icon(Icons.file_upload),
               onPressed: () {
-                SystemNavigator.pop();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => photoUpload(user: _user)),
+                );
               },
             ),
+          ),
+          SizedBox(
+            width: 20,
+          ),
+          IconButton(
+            color: HexColor("#F3C54D"),
+            icon: Icon(Icons.logout),
+            onPressed: () {
+              SystemNavigator.pop();
+            },
           ),
         ],
       ),
@@ -120,41 +114,75 @@ class _ProjectsPageState extends State<ProjectsPage> {
 ///////////////////////////////////////////////////////////////////////imagenes
                         return Column(
                           children: [
-                            Container(
-                              margin: EdgeInsets.only(
-                                top: 30.0,
-                                left: 20.0,
-                              ),
-                              height: 500.0,
+                            GestureDetector(
+                              onTap: () => launch("https://github.com/elvisapp",
+                                  forceWebView: true),
+                              child: Container(
+                                margin: EdgeInsets.only(
+                                  top: 30.0,
+                                  left: 20.0,
+                                ),
+                                height: 500.0,
 
-                              /// ==>original 220.0 e 330 de ancho
-                              width: 230.0,
-                              decoration: BoxDecoration(
-                                  color: Colors.red, //PARA PROBAR CONTAINER
-                                  borderRadius: new BorderRadius.circular(10.0),
-                                  image: DecorationImage(
-                                    image: NetworkImage(
-                                      image['url'],
+                                /// ==>original 220.0 e 330 de ancho
+                                width: 230.0,
+                                decoration: BoxDecoration(
+                                    color: Colors.red, //PARA PROBAR CONTAINER
+                                    borderRadius:
+                                        new BorderRadius.circular(10.0),
+                                    image: DecorationImage(
+                                      image: NetworkImage(
+                                        image['url'],
+                                      ),
+                                      fit: BoxFit.cover,
                                     ),
-                                    fit: BoxFit.cover,
-                                  ),
-                                  boxShadow: [
-                                    new BoxShadow(
-                                      //SOMBRA
-                                      color: Color(0xffA4A4A4),
-                                      offset: Offset(1.0, 5.0),
-                                      blurRadius: 3.0,
+                                    boxShadow: [
+                                      new BoxShadow(
+                                        //SOMBRA
+                                        color: Color(0xffA4A4A4),
+                                        offset: Offset(1.0, 5.0),
+                                        blurRadius: 3.0,
+                                      ),
+                                    ]),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Container(
+                                      color: Colors.amber,
+                                      child: Text(image['uploaded_by']),
                                     ),
-                                  ]),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  Container(
-                                    color: Colors.amber,
-                                    child: Text(image['uploaded_by']),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Text(
+                              image['description'],
+                              style: TextStyle(
+                                  color: Colors.green,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  image['date'],
+                                  style: TextStyle(
+                                      color: Colors.green,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  image['time'],
+                                  style: TextStyle(
+                                      color: Colors.green,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 15,
                             ),
                             _menuButom(),
                             const Divider(
@@ -169,7 +197,9 @@ class _ProjectsPageState extends State<ProjectsPage> {
                   }
 
                   return const Center(
-                    child: CircularProgressIndicator(),
+                    child: CircularProgressIndicator(
+                      backgroundColor: Colors.green,
+                    ),
                   );
                 },
               ),
@@ -188,13 +218,13 @@ class _ProjectsPageState extends State<ProjectsPage> {
   }
 
   Widget _menuButom() {
-    return AppBar(
-      backgroundColor: Colors.amber,
-      title: const Text(
-        'elvis.com',
-        style: TextStyle(color: Colors.red),
-      ),
-      actions: <Widget>[
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Text(
+          'elvis.com',
+          style: TextStyle(color: Colors.red),
+        ),
         IconButton(
           color: Colors.red,
           icon: Icon(Icons.downloading),
@@ -202,9 +232,30 @@ class _ProjectsPageState extends State<ProjectsPage> {
             launch("https://github.com/elvisapp", forceWebView: true);
           },
         ),
-
-        // implement the popup menu button
       ],
     );
+  }
+
+  Future<List<Map<String, dynamic>>> _loadImages() async {
+    List<Map<String, dynamic>> files = [];
+
+    final ListResult result = await storage.ref().list();
+    final List<Reference> allFiles = result.items;
+
+    await Future.forEach<Reference>(allFiles, (file) async {
+      final String fileUrl = await file.getDownloadURL();
+      final FullMetadata fileMeta = await file.getMetadata();
+      files.add({
+        "url": fileUrl,
+        "path": file.fullPath,
+        "uploaded_by": fileMeta.customMetadata?['uploaded_by'] ?? 'Home Free',
+        "description": fileMeta.customMetadata?['description'] ??
+            'https://github.com/elvisapp',
+        "date": fileMeta.customMetadata?['date'] ?? '2022',
+        "time": fileMeta.customMetadata?['time'] ?? '00:00',
+      });
+    });
+
+    return files;
   }
 }
