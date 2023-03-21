@@ -79,27 +79,28 @@ class _photoUploadState extends State<photoUpload> {
       var timeKey = DateTime.now();
       var dbTimeKey = DateTime.now();
       var formatDate = DateFormat('MMM d, yyyy');
-      var formatTime = DateFormat('EEEE, hh:mm aaa');
+      var formatTime = DateFormat('hh:mm (aaa)');
       String date = formatDate.format(dbTimeKey);
       String time = formatTime.format(dbTimeKey);
 
-      UploadTask uploadTask =
-          postImageRef.child(timeKey.toString() + ".jpg").putFile(
+      UploadTask uploadTask = postImageRef
+          .child(timeKey.toString() + ".jpg")
+          .putFile(
               _image!,
-              SettableMetadata(customMetadata: {
-                'uploaded_by': 'Contributing Developer', //////titulo
-                'description': _myValue!,
-                "date": date,
-                "time": time,
-              }));
+              SettableMetadata(
+                  cacheControl: "public, max-age=300",
+                  contentType: "image/jpeg",
+                  customMetadata: {
+                    'uploaded_by': 'Contributing Developer', //////titulo
+                    'description': _myValue!,
+                    "date": date,
+                    "time": time,
+                  }));
 
       var imageUrl = await (await uploadTask).ref.getDownloadURL();
       url = imageUrl.toString();
       print(url);
-      // Guardar el post en la bbdd
 
-      //Regresar en Home
-      //Navigator.pop(context);
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => ProjectsPage(user: _user)),
@@ -142,6 +143,7 @@ class _photoUploadState extends State<photoUpload> {
                 SizedBox(
                   height: 15.0,
                 ),
+                _progreso(),
                 RaisedButton(
                   elevation: 10.0,
                   child: Text("Add project"),
@@ -158,6 +160,14 @@ class _photoUploadState extends State<photoUpload> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _progreso() {
+    return const LinearProgressIndicator(
+      backgroundColor: Colors.purple,
+      valueColor: AlwaysStoppedAnimation(Colors.green),
+      minHeight: 10,
     );
   }
 

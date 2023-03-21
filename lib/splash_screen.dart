@@ -1,7 +1,6 @@
 import 'dart:async';
-
-import 'package:developed_projects/src/login/login_page.dart';
 import 'package:flutter/material.dart';
+import 'src/pages/login/login_page.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key, required this.title}) : super(key: key);
@@ -20,7 +19,6 @@ class _SplashScreenState extends State<SplashScreen> {
       setState(() {
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(builder: (context) => const LoginPage()),
-            // SignInPage()
             (route) => false);
       });
     });

@@ -9,6 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../utilities/colors.dart';
 import '../home/home_controller.dart';
 
 class ProjectsPage extends StatefulWidget {
@@ -56,12 +57,26 @@ class _ProjectsPageState extends State<ProjectsPage> {
 
         // Coloca el icono detrás
         actions: <Widget>[
-          ClipOval(
-            child: Image.network(
-              _user.photoURL!,
-              fit: BoxFit.fitHeight,
-            ),
-          ),
+          _user.photoURL != null
+              ? ClipOval(
+                  child: Image.network(
+                    _user.photoURL!,
+                    fit: BoxFit.fitHeight,
+                  ),
+                )
+              : ClipOval(
+                  child: Material(
+                    color: CustomColors.firebaseGrey.withOpacity(0.3),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Icon(
+                        Icons.person,
+                        size: 60,
+                        color: CustomColors.firebaseGrey,
+                      ),
+                    ),
+                  ),
+                ),
           Padding(
             padding: const EdgeInsets.only(left: 50),
             child: IconButton(
@@ -239,20 +254,22 @@ class _ProjectsPageState extends State<ProjectsPage> {
   Future<List<Map<String, dynamic>>> _loadImages() async {
     List<Map<String, dynamic>> files = [];
 
-    final ListResult result = await storage.ref().list();
-    final List<Reference> allFiles = result.items;
+    final Reference postImageRef = FirebaseStorage.instance.ref();
+    ListResult result = await postImageRef.listAll();
+    List<Reference> allFiles = result.items;
+    allFiles.sort((a, b) => b.name.compareTo(a.name));
 
     await Future.forEach<Reference>(allFiles, (file) async {
       final String fileUrl = await file.getDownloadURL();
       final FullMetadata fileMeta = await file.getMetadata();
-      files.add({
+      final data = files.add({
         "url": fileUrl,
         "path": file.fullPath,
         "uploaded_by": fileMeta.customMetadata?['uploaded_by'] ?? 'Home Free',
-        "description": fileMeta.customMetadata?['description'] ??
-            'https://github.com/elvisapp',
-        "date": fileMeta.customMetadata?['date'] ?? '2022',
-        "time": fileMeta.customMetadata?['time'] ?? '00:00',
+        "description": fileMeta.customMetadata?['description'] ?? '',
+        "date": fileMeta.customMetadata?['date'] ?? 'Mar, 2023',
+        "time": fileMeta.customMetadata?['time'] ?? '00:00 AM ',
+        "timeCreated": fileMeta.timeCreated,
       });
     });
 

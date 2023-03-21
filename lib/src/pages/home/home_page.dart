@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage> {
             padding: EdgeInsets.zero,
             children: <Widget>[
               DrawerHeader(
-                padding: const EdgeInsets.symmetric(vertical: 20.0),
+                padding: const EdgeInsets.symmetric(vertical: 19.0),
                 //margin: const EdgeInsets.all(8.0),
                 decoration: const BoxDecoration(
                     gradient: LinearGradient(colors: [
@@ -70,6 +70,7 @@ class _HomePageState extends State<HomePage> {
                 child: Column(
                   children: [
                     Row(),
+                    //SizedBox(height: 5.0),
                     _user.photoURL != null
                         ? ClipOval(
                             child: Material(
@@ -93,22 +94,21 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ),
                           ),
-                    //SizedBox(height: 16.0),
+                    //SizedBox(height: 20.0),
                     //////////////Saluudo del sistema
-                    Text(
-                      _user.displayName!,
-                      style: TextStyle(
-                        color: CustomColors.firebaseYellow,
-                        fontSize: 20,
-                      ),
-                    ),
+                    _user.displayName != null
+                        ? Text(_user.displayName!,
+                            style: TextStyle(
+                              color: CustomColors.firebaseYellow,
+                              fontSize: 20,
+                            ))
+                        : Text("Actualice su e-mail"),
                   ],
                 ),
               ),
               // SizedBox(
               //   height: MediaQuery.of(context).size.height * 0.11,
               // ),
-
               ListTile(
                 title: Center(
                   child: Text(
